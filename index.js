@@ -27,6 +27,12 @@ console.log(users);
 
 server.get('/users', (req, res) => {
   db.find().then(d => res.status(200).json(d)).catch(e => res.status(500).send(`oh not! ${e}`));
+});
+
+server.get('users/:id', (req, res) => {
+  const user = db.findById(req.params.id);
+  res.send(user);
+  console.log(req.params.id);
 })
 
 /*
