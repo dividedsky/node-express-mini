@@ -8,6 +8,27 @@ server.get('/', (req, res) => {
   res.send('hello world!');
 });
 
+server.get('/hobbits', ( req, res  )=> {
+  const hobbits = [
+  {
+    id: 1,
+    name: 'Samwise Gamgee',
+  },
+  {
+    id: 2,
+    name: 'Frodo Baggins',
+  },
+  ];
+  res.status(200).json(hobbits);
+})
+
+const users = db.find();
+console.log(users);
+
+server.get('/users', (req, res) => {
+  db.find().then(d => res.status(200).json(d)).catch(e => res.status(500).send(`oh not! ${e}`));
+})
+
 /*
  *server.get('/api/users', (req, res) => {
  *  let users;
